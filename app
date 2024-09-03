@@ -5,7 +5,9 @@ import os
 
 app = Flask(__name__)
 
-client = MongoClient("mongodb://localhost:27017/")
+# Utilizando uma variável de ambiente para a string de conexão do MongoDB
+mongo_uri = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+client = MongoClient(mongo_uri)
 db = client["Assuntos"]
 collection = db["Crisp.Assuntos Crisp"]
 
@@ -29,4 +31,4 @@ def webhook():
 
 if __name__ == '__main__':
     # Executa o servidor na porta 5000
-    app.run(port=5000)
+    app.run(host='0.0.0.0', port=5000)
