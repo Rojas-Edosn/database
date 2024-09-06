@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 
 # Obtenha a URI a partir da variável de ambiente ou defina diretamente aqui para teste local
-MONGO_URI = os.environ.get("MONGODB_URI", "mongodb+srv://AssuntoCrisp:<k.!8W477r8nAAdk>@assuntoscrisp.sxetv.mongodb.net/?retryWrites=true&w=majority&appName=AssuntosCrisp")
+MONGO_URI = os.environ.get("MONGODB_URI", "mongodb+srv://AssuntoCrisp:k.!8W477r8nAAdk@assuntoscrisp.sxetv.mongodb.net/?retryWrites=true&w=majority&appName=AssuntosCrisp")
 
 # Conecta ao cluster MongoDB Atlas
 client = MongoClient(MONGO_URI)
