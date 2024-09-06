@@ -5,8 +5,16 @@ import os
 
 app = Flask(__name__)
 
-client = MongoClient("mongodb://localhost:27017/")
+# Obtenha a URI a partir da variável de ambiente ou defina diretamente aqui para teste local
+MONGO_URI = os.environ.get("MONGODB_URI", "mongodb+srv://AssuntoCrisp:<db_password>@assuntoscrisp.sxetv.mongodb.net/?retryWrites=true&w=majority&appName=AssuntosCrisp")
+
+# Conecta ao cluster MongoDB Atlas
+client = MongoClient(MONGO_URI)
+
+# Selecione o banco de dados
 db = client["Assuntos"]
+
+# Selecione a coleção
 collection = db["Crisp.Assuntos Crisp"]
 
 @app.route('/webhook', methods=['POST'])
