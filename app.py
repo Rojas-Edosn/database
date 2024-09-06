@@ -1,20 +1,17 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
-from bson import ObjectId  # Import ObjectId to help with conversion
 import os
 
 app = Flask(__name__)
 
-# Obtenha a URI a partir da variável de ambiente ou defina diretamente aqui para teste local
-MONGO_URI = os.environ.get("MONGODB_URI", "mongodb+srv://AssuntoCrisp:k.!8W477r8nAAdk@assuntoscrisp.sxetv.mongodb.net/?retryWrites=true&w=majority&appName=AssuntosCrisp")
+# Obtenha a URI a partir da variável de ambiente
+MONGO_URI = os.environ.get("MONGODB_URI")
 
 # Conecta ao cluster MongoDB Atlas
 client = MongoClient(MONGO_URI)
 
-# Selecione o banco de dados
+# Selecione o banco de dados e a coleção
 db = client["Assuntos"]
-
-# Selecione a coleção
 collection = db["Crisp.Assuntos Crisp"]
 
 @app.route('/webhook', methods=['POST'])
@@ -38,4 +35,3 @@ def webhook():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))  # Use a variável de ambiente PORT
     app.run(host='0.0.0.0', port=port)
-
