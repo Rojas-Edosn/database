@@ -36,7 +36,6 @@ def webhook():
         return jsonify({"status": "erro", "mensagem": str(e)}), 500
 
 if __name__ == '__main__':
-    # Obtém a porta a partir da variável de ambiente PORT ou usa 5000 como padrão
-    port = int(os.environ.get("PORT", 5000))
-    # Executa o servidor na porta obtida
+    port = int(os.environ.get("PORT", 5000))  # Use a variável de ambiente PORT
     app.run(host='0.0.0.0', port=port)
+
